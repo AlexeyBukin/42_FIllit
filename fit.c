@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 14:21:09 by kcharla           #+#    #+#             */
-/*   Updated: 2019/09/26 14:16:40 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/09/26 15:09:13 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,27 @@ int		is_perimiter_empty(t_field field, int size)
 	if (i != size + 1)
 		return (0);
 	return (1);
+}
+
+/* функция возвращает расстояние первой точки
+ * от верхнего левого угла
+ *
+*/
+
+int     get_rang(t_field field, int perim)
+{
+    int     i;
+    int     index;
+
+    i = 0;
+    while (i < perim * perim)
+    {
+        index = get_index_by_num(i, perim);
+        if (field[index] == '.')
+            return (i);
+        i++;
+    }
+    return (i + 1);
 }
 
 void		stack(t_field field, int index, t_mino mino)
@@ -127,9 +148,7 @@ void		rec_puzzle(t_field field, t_mino *tminos, int mino_num)
 		return ;
 
 	///
-
 	//g_step ++;
-
     ft_memcpy(local_field, field, FIELD_STR_LEN);
 
 	if (mino_num == 0)
@@ -140,11 +159,22 @@ void		rec_puzzle(t_field field, t_mino *tminos, int mino_num)
 			g_best_perimeter = perimiter_size;
 			ft_memcpy(g_best_field, field, FIELD_STR_LEN);
 
-			print_step("congrats!!!\n");
+			print_step("congrats!!! - better size\n");
 			///
 			//print_field(g_best_field, 8);
 
 		}
+		else if (perimiter_size == g_best_perimeter)
+        {
+		    if (get_rang(field, perimiter_size) > get_rang(g_best_field, perimiter_size))
+            {
+                ft_memcpy(g_best_field, field, FIELD_STR_LEN);
+
+                print_step("congrats !!! - better rang\n");
+            }
+
+
+        }
 		///
         print_field(local_field, 8);
 

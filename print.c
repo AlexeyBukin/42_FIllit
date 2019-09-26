@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 17:57:19 by kcharla           #+#    #+#             */
-/*   Updated: 2019/09/25 11:49:13 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/09/26 14:54:28 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,20 @@ void	print_field(t_field field, int	size)
 	int 	j;
 	int 	i;
 
+	char *colors[10];
+
+	colors[0] = "[0;31m";
+    colors[1] = "[0;32m";
+    colors[2] = "[0;33m";
+    colors[3] = "[0;34m";
+    colors[4] = "[0;35m";
+    colors[5] = "[0;36m";
+
+//    colors[6] = "[1;31m";
+//    colors[7] = "[0;31m";
+//    colors[8] = "[0;31m";
+//    colors[9] = "[0;31m";
+
 	i = 0;
 	while(i < size)
 	{
@@ -46,7 +60,18 @@ void	print_field(t_field field, int	size)
 
 		while (j < size)
 		{
-			printf("%c", field[FIELD_SIZE * i + j]);
+		    if (field[FIELD_SIZE * i + j] <= 'Z' && field[FIELD_SIZE * i + j] >= 'A')
+            {
+
+		        printf("%s%s", "\033", colors[field[FIELD_SIZE * i + j] - 'A']);
+                printf("%c", field[FIELD_SIZE * i + j]);
+                printf("\033[0m");
+            }
+		    else
+            {
+                printf("%c", field[FIELD_SIZE * i + j]);
+            }
+
 			j++;
 		}
 		printf("\n");
