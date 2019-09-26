@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 13:05:49 by kcharla           #+#    #+#             */
-/*   Updated: 2019/09/25 21:06:35 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/09/26 19:30:21 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ typedef char t_field[256];
 #define TMINO_SIZE 4
 #define TMINO_STR_LEN 16
 typedef char t_mino[16];
+
+/// start.c
+void    start(t_mino *array, int mino_num);
+
+/// define_tetrimino.c
 
 int			define_tetrimino(t_mino tmino);
 

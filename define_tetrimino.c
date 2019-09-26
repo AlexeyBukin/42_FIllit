@@ -52,7 +52,7 @@ int		define_tetrimino(t_mino tmino)
 
 	if (tmino == 0)
 		return (-1);
-	if (count_chars(tmino, '#') != 4 || count_chars(tmino, '.') != 12)
+	if (count_chars(tmino, '.') != 12)
 		return (-1);
 	shift_up_left(tmino);
 	i = 0;

@@ -11,7 +11,7 @@ LIB_MAKE = $(LIB_DIR)Makefile
 LIB_FILE = lib/libft.a
 
 #copypaste from bash "ls *.c" below
-C_FILES_LIST = define_tetrimino.c main.c shift.c print.c fit.c
+C_FILES_LIST = define_tetrimino.c main.c shift.c print.c fit.c read.c start.c
 
 C_FILES = $(C_FILES_LIST)
 

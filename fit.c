@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 14:21:09 by kcharla           #+#    #+#             */
-/*   Updated: 2019/09/26 15:09:26 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/09/26 20:07:57 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,13 +118,14 @@ int		try_stack(t_field field, int index, t_mino mino)
 
 int			g_best_perimeter = 16;
 t_field		g_best_field;
+int         g_best_rang = -1;
 
 extern int			g_step;
 
 
-
 void		rec_puzzle(t_field field, t_mino *tminos, int mino_num)
 {
+    int         local_rang;
 	int 		a;
 	int 		j;
 	int 		i;
@@ -141,24 +142,26 @@ void		rec_puzzle(t_field field, t_mino *tminos, int mino_num)
 	//if (perimiter_size <= 1)
 	//	perimiter_size = 0;
 
-	print_step("");
-	printf("p_size: %d, mino_num: %d\n", perimiter_size, mino_num);
+	/// get-back
+	//print_step("");
+	//printf("p_size: %d, mino_num: %d\n", perimiter_size, mino_num);
 
 	if (perimiter_size > g_best_perimeter)
 		return ;
 
 	///
 	//g_step ++;
-    ft_memcpy(local_field, field, FIELD_STR_LEN);
+	//ft_memcpy(local_field, field, FIELD_STR_LEN);
 
 	if (mino_num == 0)
 	{
-		print_step("endpoint\n");
+        /// get-back
+        // print_step("endpoint\n");
 		if (perimiter_size < g_best_perimeter)
 		{
 			g_best_perimeter = perimiter_size;
 			ft_memcpy(g_best_field, field, FIELD_STR_LEN);
-
+			g_best_rang = get_rang(g_best_field, perimiter_size);
 			print_step("congrats!!! - better size\n");
 			///
 			//print_field(g_best_field, 8);
@@ -166,30 +169,28 @@ void		rec_puzzle(t_field field, t_mino *tminos, int mino_num)
 		}
 		else if (perimiter_size == g_best_perimeter)
         {
-		    if (get_rang(field, perimiter_size) > get_rang(g_best_field, perimiter_size))
+		    local_rang = get_rang(field, perimiter_size);
+		    if (local_rang > g_best_rang)
             {
                 ft_memcpy(g_best_field, field, FIELD_STR_LEN);
-
+                g_best_rang = local_rang;
                 print_step("congrats !!! - better rang\n");
             }
-
-
         }
 		///
-        print_field(local_field, 8);
+        /// get-back
+        // print_field(g_best_field, 8);
 
-		return;
+		return ;
 	}
 
-	print_step("call\n");
+	// print_step("call\n");
 
-	//ft_memcpy(local_field, field, FIELD_STR_LEN);
+	ft_memcpy(local_field, field, FIELD_STR_LEN);
 	i = 0;
 
-	//perimiter_size = find_perimiter_size(field);
-
-
-	print_field(local_field, 8);
+    /// get-back
+	// print_field(local_field, 8);
 
 	while (i < mino_num)
 	{
@@ -215,8 +216,9 @@ void		rec_puzzle(t_field field, t_mino *tminos, int mino_num)
 				//printf("copy from %d to %d\n", j, a);
 				ft_memcpy(next_array[j], tminos[a], TMINO_STR_LEN);
 				//next_array[j] = tminos[a];
-				///
-				print_tmino(next_array[j]);
+
+				/// get-back
+				// print_tmino(next_array[j]);
 
 				a++;
 				j++;
@@ -272,8 +274,6 @@ void		rec_puzzle(t_field field, t_mino *tminos, int mino_num)
 		}
 		i++;
 	}
-	///
-	/// return (0);
 }
 
 int		get_index_by_num(int num, int size)

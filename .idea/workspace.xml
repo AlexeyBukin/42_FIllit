@@ -10,12 +10,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5569c9c2-c817-4dfe-addd-683b4c32b4c7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Libft/ft_atoi.c" beforeDir="false" afterPath="$PROJECT_DIR$/Libft/ft_atoi.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Libft/ft_itoa.c" beforeDir="false" afterPath="$PROJECT_DIR$/Libft/ft_itoa.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Libft/ft_lstmap.c" beforeDir="false" afterPath="$PROJECT_DIR$/Libft/ft_lstmap.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Libft/ft_memchr.c" beforeDir="false" afterPath="$PROJECT_DIR$/Libft/ft_memchr.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Libft/ft_strsplit.c" beforeDir="false" afterPath="$PROJECT_DIR$/Libft/ft_strsplit.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Libft/libft.h" beforeDir="false" afterPath="$PROJECT_DIR$/Libft/libft.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/define_tetrimino.c" beforeDir="false" afterPath="$PROJECT_DIR$/define_tetrimino.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fillit" beforeDir="false" afterPath="$PROJECT_DIR$/fillit" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fillit.dSYM/Contents/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fillit.dSYM/Contents/Resources/DWARF/fillit" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fit.c" beforeDir="false" afterPath="$PROJECT_DIR$/fit.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/fillit_header.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/fillit_header.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objects/define_tetrimino.o" beforeDir="false" afterPath="$PROJECT_DIR$/objects/define_tetrimino.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objects/fit.o" beforeDir="false" afterPath="$PROJECT_DIR$/objects/fit.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objects/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/objects/main.o" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,7 +41,7 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Libft" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1R9vMfgbDhqUjD6RObn2dSujil3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -40,16 +54,17 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Other File Types" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/norme" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/includes" />
       <recent name="$PROJECT_DIR$/lib" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -84,6 +99,7 @@
       <workItem from="1569395564793" duration="7083000" />
       <workItem from="1569409862696" duration="8282000" />
       <workItem from="1569431093122" duration="4225000" />
+      <workItem from="1569508845611" duration="6715000" />
     </task>
     <servers />
   </component>
