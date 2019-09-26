@@ -6,26 +6,27 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 14:21:09 by kcharla           #+#    #+#             */
-/*   Updated: 2019/09/25 21:04:48 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/09/26 14:16:40 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fillit_header.h"
 #include <stdio.h>
 
+//TODO krasivo size + 1
 int		is_perimiter_empty(t_field field, int size)
 {
 	int		i;
 
 	i = 0;
-	while (field[FIELD_SIZE * i + size] == '.' && i < size)
+	while (field[FIELD_SIZE * i + size] == '.' && i < size + 1)
 		i++;
-	if (i != size)
+	if (i != size + 1)
 		return (0);
 	i = 0;
-	while (field[FIELD_SIZE * size + i] == '.' && i < size)
+	while (field[FIELD_SIZE * size + i] == '.' && i < size + 1)
 		i++;
-	if (i != size)
+	if (i != size + 1)
 		return (0);
 	return (1);
 }
@@ -111,6 +112,8 @@ void		rec_puzzle(t_field field, t_mino *tminos, int mino_num)
 	t_mino		next_array[mino_num];
 	t_field		local_field;
 
+    //print_field(local_field, 8);
+
 
 
 	perimiter_size = find_perimiter_size(field);
@@ -127,6 +130,8 @@ void		rec_puzzle(t_field field, t_mino *tminos, int mino_num)
 
 	//g_step ++;
 
+    ft_memcpy(local_field, field, FIELD_STR_LEN);
+
 	if (mino_num == 0)
 	{
 		print_step("endpoint\n");
@@ -136,15 +141,19 @@ void		rec_puzzle(t_field field, t_mino *tminos, int mino_num)
 			ft_memcpy(g_best_field, field, FIELD_STR_LEN);
 
 			print_step("congrats!!!\n");
-			print_field(g_best_field, 8);
+			///
+			//print_field(g_best_field, 8);
 
 		}
+		///
+        print_field(local_field, 8);
+
 		return;
 	}
 
 	print_step("call\n");
 
-	ft_memcpy(local_field, field, FIELD_STR_LEN);
+	//ft_memcpy(local_field, field, FIELD_STR_LEN);
 	i = 0;
 
 	//perimiter_size = find_perimiter_size(field);
@@ -193,7 +202,7 @@ void		rec_puzzle(t_field field, t_mino *tminos, int mino_num)
 
 			j = 0;
 			//while (j <= perimiter_size)
-			while (j < perimiter_size * perimiter_size)
+			while (j < (perimiter_size + 1) * (perimiter_size + 1))
 			{
 				//print_step("no crash 2: \n");
 				///
@@ -203,9 +212,10 @@ void		rec_puzzle(t_field field, t_mino *tminos, int mino_num)
 				//local_field[FIELD_SIZE * j + perimiter_size] = '.';
 				///
 
-				int index = get_index_by_num(j, perimiter_size);
-				//print_step("_");
-				//printf("j: %d, index: %d\n", j, index);
+				int index = get_index_by_num(j, (perimiter_size + 1));
+
+				//print_step("");
+				//printf("j: %d, x: %d, y: %d, index: %d\n", j, index % 16, index / 16, index);
 				//if (try_stack(&local_field, FIELD_SIZE * j + perimiter_size, active_mino))
 				if (try_stack(local_field, index, active_mino))
 				{

@@ -5,7 +5,7 @@ FLAGS = -Wall -Wextra -Werror
 H_FILES = includes/fillit_header.h
 
 O_DIR = objects/
-LIB_DIR = lib/
+LIB_DIR = Libft/
 LIB_HEAD = $(LIB_DIR)libft.h
 LIB_MAKE = $(LIB_DIR)Makefile
 LIB_FILE = lib/libft.a
@@ -27,6 +27,10 @@ all: $(NAME)
 
 $(NAME): $(O_DIR) $(O_FILES) $(LIB_FILE)
 	clang -o $(NAME) $(O_FILES) -I Libft/includes -I includes/ -L lib/ -lft
+
+$(LIB_FILE): $(O_DIR)
+	make -C $(LIB_DIR)
+	cp $(LIB_DIR)libft.a $(LIB_FILE)
 
 $(O_DIR):
 	@mkdir -p $(O_DIR)

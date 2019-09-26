@@ -77,7 +77,7 @@ int		main(int argc, char **argv)
 	//mino_to_letter(array[2], 2);
 
 	init_field(test_field);
-	init_field(g_best_field);
+	//init_field(g_best_field);
 	rec_puzzle(test_field, array, i);
 	//rec_puzzle(test_field, array, 3);
 
