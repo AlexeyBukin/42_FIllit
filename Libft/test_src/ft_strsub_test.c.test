@@ -1,0 +1,55 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strsub_test.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/13 20:15:59 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/13 20:18:13 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int		main(int argc, char **argv)
+{
+	unsigned int	start;
+	size_t			length;
+	size_t			t1_len;
+	char			*test1;
+	char			*test2;
+
+	test1 = "abcdefghij";
+	start = 0;
+	length = 3;
+	if (argc > 1)
+	{
+		test1 = argv[1];
+		if (argc > 2)
+		{
+			length = (size_t) ft_atoi_test(argv[2]);
+			if (argc > 3)
+			{
+				start = length;
+				length = (size_t) ft_atoi_test(argv[3]);
+			}
+		}
+	}
+	t1_len = ft_strlen_test((char*)test1);
+	test2 = ft_strsub(test1, start, length);
+	if (test2 == 0)
+	{
+		printf("ft_strsub() returned 0 (null pointer). Exit...");
+		return (0);
+	}
+	printf("\nft_strsub(\"%s\", %u, %zu)\n", test1, start, length);
+	printf("\nTest1 in memory: \n");
+	print_mem(test1, t1_len+1);
+	printf("\n\nTest2 in memory: \n");
+	print_mem(test2, length+1);
+	free(test1);
+	free(test2);
+	printf("\n");
+	return (0);
+}

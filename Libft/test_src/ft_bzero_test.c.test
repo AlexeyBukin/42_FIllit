@@ -1,0 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_bzero_test.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/06 22:30:28 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/07 16:55:12 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int		main(int argc, char **argv)
+{
+	int			ch;
+	size_t		length;
+	uint8_t		*test;
+
+	ch = '\0';
+	length = 16;
+	if (argc > 1)
+	{
+		length = (size_t) ft_atoi_test(argv[1]);
+		if (length == 0)
+		{
+			length = 16;
+			printf("\nCannot cast %s to int: length set to 16\n\n", argv[1]);
+		}
+	}
+	test = (uint8_t*)malloc(sizeof(uint8_t) * length);
+	if (test == 0)
+	{
+		printf("Malloc() returned 0 (null pointer). Exit...");
+		return (0);
+	}
+	printf("\nTemplate: 0x%02x (\'%c\')\n\n", ch, ch);
+	printf("Before ft_bzero(): \n");
+	print_mem(test, length);
+	test = ft_bzero(test, length);
+	printf("\n\nAfter ft_bzero(): \n");
+	print_mem(test, length);
+	printf("\n");
+	return (0);
+}

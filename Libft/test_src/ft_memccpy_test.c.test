@@ -1,0 +1,153 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcpy_test.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/06 22:42:34 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/07 16:50:40 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+#define RANDT	512
+#define LONG	10000
+
+char	ft_map_to_0(char c)
+{
+	return (c - (50));
+}
+
+int		main(int argc, char **argv)
+{
+	argc++;
+	argv++;
+//	size_t		length;
+////	size_t		length_2;
+//	uint8_t		ch;
+//	uint8_t		*test1;
+//	uint8_t		*test2;
+//	uint8_t		*test3;
+//	uint8_t		*test_ft;
+//	uint8_t		*test_true;
+//
+//	test1 = (uint8_t*)"He said \'London is a capital of Great Britain\' 1234567890 times.";
+//	ch = 'a';
+//
+//	if (argc == 2)
+//	{
+//		ch = argv[1][0];
+//	}
+//	else if (argc == 3)
+//	{
+//		test1 = (uint8_t*)argv[1];
+//		ch = argv[2][0];
+//	}
+//	else if (argc > 3)
+//	{
+//		printf("Wrong number of args. Try again\n");
+//		return (0);
+//	}
+//
+//	length = ft_strlen_test((char*) test1) + 1;
+//
+//	//delete this
+//	test1 = (uint8_t*) ft_strmap((char*)test1, &ft_map_to_0);
+//	ch = (uint8_t)ft_map_to_0(ch);
+//
+//	printf("\nStr: \"%s\"\n", test1);
+//	printf("\nTemplate: 0x%02x (\'%c\')\n\n", ch, ch);
+//	printf("print_mem(test1, length): \n");
+//	print_mem(test1, length);
+//	//length_2 = (int)((uint8_t*)ft_memchr(test1, ch, length) - test1) + 1;
+//	//printf("\n\nlength_2: %d\n", length_2);
+//	test2 = malloc(sizeof(uint8_t) * length);
+//	test3 = malloc(sizeof(uint8_t) * length);
+//	if (test2 == 0 || test3 == 0)
+//	{
+//		printf("Malloc() returned 0 (null pointer). Exit...");
+//		return (0);
+//	}
+//	test_ft = test2;
+//	test_ft = ft_memccpy(test2, test1, ch, length);
+//	test_true = test3;
+////	test_true = memccpy(test3, test1, ch, length);
+//	printf("\n\nft_memccpy(): [0x%08x]: 0x%02x (\'%c\')\n", (unsigned int) test_ft, test_ft[0], test_ft[0]);
+////	//test3 = memccpy(test2, test1, ch, length);
+////	//printf("\nprint_mem(test2, length): \n");
+////	//print_mem(test2, length);
+//	printf("\nmemccpy(): [0x%08x]: 0x%02x (\'%c\')\n", (unsigned int) test_true, test_true[0], test_true[0]);
+////	printf("\nprint_mem_cmp(test_ft, test_true, length): \n");
+////	print_mem(test3, length);
+//	print_mem_cmp(test2, test3, length);
+//	printf("\n");
+
+
+	char			ctab[11], ctab2[11], ctab3[11];
+	int				itab[11], itab2[11], itab3[11];
+	unsigned long	ltab[11], ltab2[11], ltab3[11];
+	int				i, j;
+	size_t			k;
+	void			*temp, *temp2;
+
+	k = 0;
+	//k = 1;
+	//while (k <= sizeof(ltab))
+	//{
+		i = 0;
+		while (i < RANDT)
+		{
+			j = 0;
+			while (j < 11)
+			{
+				ctab[j] = (char)rand();
+				ctab2[j] = 0; ctab3[j] = 0;
+				itab[j] = rand();
+				itab2[j] = 0; itab3[j] = 0;
+				ltab[j] = (unsigned long)rand() * LONG;
+				ltab2[j] = 0; ltab3[j] = 0;
+				j++;
+			}
+			temp = memccpy(ctab2, ctab, 'a', (k < sizeof(ctab)) ? k : sizeof(ctab));
+			memcpy(ctab3, ctab2, sizeof(ctab));
+			memset(ctab2, 0, sizeof(ctab2));
+			temp2 = ft_memccpy(ctab2, ctab, 'a', (k < sizeof(ctab)) ? k : sizeof(ctab));
+			if ((memcmp(ctab2, ctab3, sizeof(ctab)) != 0 || (temp != temp2)))
+			{
+				printf("\n\nERROR 1: \n[original]: k = %zu\n\n", (k < sizeof(ctab)) ? k : sizeof(ctab));
+				print_mem(ctab, 11);
+				printf("\ntemp: [0x%08x]  ||| temp2: [0x%08x] \n\n", (unsigned int) temp, (unsigned int) temp2);
+				print_mem_cmp(ctab2, ctab3, 11);
+				break;
+			}
+			temp = memccpy(itab2, itab, 'a', (k < sizeof(itab)) ? k : sizeof(itab));
+			memcpy(itab3, itab2, sizeof(itab));
+			memset(itab2, 0, sizeof(itab2));
+			temp2 = ft_memccpy(itab2, itab, 'a', (k < sizeof(itab)) ? k : sizeof(itab));
+			if ((memcmp(itab2, itab3, sizeof(itab)) != 0 || (temp != temp2)))
+			{
+				printf("\nERROR 2: \n[original]: k = %zu\n\n", (k < sizeof(ctab)) ? k : sizeof(ctab));
+				printf("temp: [0x%08x]  ||| temp2: [0x%08x] \n\n", (unsigned int) temp, (unsigned int) temp2);
+				print_mem_cmp(itab2, itab3, 11);
+				break;
+			}
+//			temp = memccpy(ltab2, ltab, 'a', (k < sizeof(ltab)) ? k : sizeof(ltab));
+//			memcpy(ltab3, ltab2, sizeof(ltab));
+//			memset(ltab2, 0, sizeof(ltab2));
+//			temp2 = ft_memccpy(ltab2, ltab, 'a', (k < sizeof(ltab)) ? k : sizeof(ltab));
+//			if ((memcmp(ltab2, ltab3, sizeof(ltab)) != 0 || (temp != temp2)))
+//			{
+//				printf("\nERROR 3: \n[original]: k = %zu\n\n", (k < sizeof(ctab)) ? k : sizeof(ctab));
+//				printf("temp: [0x%08x]  ||| temp2: [0x%08x] \n\n", (unsigned int) temp, (unsigned int) temp2);
+//				print_mem_cmp(ltab2, ltab3, 11);
+//				break;
+//			}
+			++i;
+		}
+		++k;
+	//}
+
+	return (0);
+}

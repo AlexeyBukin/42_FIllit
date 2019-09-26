@@ -1,0 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isprint_test.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/07 11:35:22 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/07 16:58:00 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int main(int argc, char **argv)
+{
+	int		i;
+	int		j;
+
+	if (argc == 1)
+	{
+		i = -16;
+		while (i < 192)
+		{
+			printf("ft_isprint(\'%c\' {or %d}) is %d\n", i, i, ft_isprint((int) i));
+			i++;
+		}
+		return (0);
+	}
+	i = 1;
+	while (i < argc)
+	{
+		j = ft_atoi_test(argv[i]);
+		printf("ft_isprint(\'%c\' {or %d}) is %d\n", j, j, ft_isprint(j));
+		i++;
+	}
+	return (0);
+}

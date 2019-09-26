@@ -1,0 +1,50 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strstr_test.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/12 21:10:33 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/12 21:10:33 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int		main(int argc, char **argv)
+{
+	size_t		t1_len;
+	size_t		t2_len;
+	char		*test1;
+	char		*test2;
+
+	test1 = "abcdefghij";
+	test2 = "f";
+	if (argc > 1)
+	{
+		test1 = argv[1];
+		if (argc > 2)
+		{
+			test2 = argv[2];
+		}
+	}
+	t1_len = ft_strlen_test(test1);
+	t2_len = ft_strlen_test(test2);
+	printf("\nTest1 in memory: \n");
+	print_mem(test1, t1_len+1);
+	printf("\nTest2 in memory: \n");
+	print_mem(test2, t2_len+1);
+	printf("\n\nft_strstr(\"%s\", \"%s\"): \n", test1, test2);
+	test2 = ft_strstr(test1, test2);
+	if(test2 == 0)
+	{
+		printf("\n[0x00000000]: 0x00 ('')\n");
+	}
+	else
+	{
+		print_mem(test2, 1);
+	}
+	printf("\n");
+	return (0);
+}

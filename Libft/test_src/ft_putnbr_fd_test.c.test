@@ -1,0 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr_fd_test.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/12 21:54:18 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/12 21:57:52 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int main(int argc, char **argv)
+{
+	int		i;
+	int		j;
+
+	i = -123;
+	j = 1;
+	if(argc > 1)
+	{
+		i = ft_atoi_test(argv[1]);
+		if(argc > 2)
+		{
+			j = ft_atoi_test(argv[2]);
+		}
+	}
+	printf("\nBuffered output: ft_putnbr_fd(%d, %d)\n", i, j);
+	ft_putnbr_fd(i, j);
+	return (0);
+}

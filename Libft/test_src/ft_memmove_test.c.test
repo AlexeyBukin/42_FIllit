@@ -1,0 +1,66 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memmove_test.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/07 14:29:58 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/07 16:58:19 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int		main(int argc, char **argv)
+{
+	size_t		length;
+	size_t		t2_len;
+	int			shift;
+	uint8_t		*test0;
+	uint8_t		*test1;
+	uint8_t		*test2;
+
+	test0 = (uint8_t*)"abcdefghijklmnopqrst";
+	shift = 2;
+	if (argc > 1)
+	{
+		shift = (size_t) ft_atoi_test(argv[1]);
+	}
+	if (argc > 2)
+	{
+		test0 = (uint8_t*)argv[2];
+	}
+	length = ft_strlen_test((char*)test0);
+	test1 = (uint8_t*)malloc(sizeof(char) * length);
+	if (test1 == 0)
+	{
+		printf("Malloc() returned 0 (null pointer). Exit...");
+		return (0);
+	}
+	test0 = memcpy(test1, test0, length+1);
+	if (shift >= 0)
+	{
+		t2_len = length - shift;
+		test1 = test0;
+		test2 = test0 + shift;
+	}
+	else
+	{
+		t2_len = length + shift;
+		test1 = test0 - shift;
+		test2 = test0;
+	}
+	if (t2_len == 0 || t2_len > 1000)
+	{
+		printf("Wrong arguments. Try again.");
+		return (0);
+	}
+	printf("\nprint_mem() before ft_memmove(): \n");
+	print_mem(test0, length + 1);
+	test2 = ft_memmove(test2, test1, t2_len);
+	printf("\n\nprint_mem() after ft_memmove(): \n");
+	print_mem(test0, length + 1);
+	printf("\n");
+	return (0);
+}

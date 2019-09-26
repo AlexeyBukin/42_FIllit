@@ -1,0 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isalnum_test.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/07 10:57:41 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/07 15:52:15 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int		main(int argc, char **argv)
+{
+	int		i;
+	int		j;
+
+	if (argc == 1)
+	{
+		i = 0;
+		while (i < 128)
+		{
+			printf("ft_isalnum(\'%c\' {or %d})", i, i);
+			printf(" is %d\n", ft_isalnum((int)i));
+			i++;
+		}
+		return (0);
+	}
+	i = 1;
+	while (i < argc)
+	{
+		j = 0;
+		while (argv[i][j] != '\0')
+		{
+			printf("ft_isalnum(\'%c\' {or %d})", argv[i][j], argv[i][j]);
+			printf(" is %d\n", ft_isalnum((int)argv[i][j]));
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}

@@ -1,0 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcpy_test.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/06 22:42:34 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/07 16:56:42 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int		main(int argc, char **argv)
+{
+	size_t		length;
+	uint8_t		*test1;
+	uint8_t		*test2;
+
+	test1 = (uint8_t*)"abcdefghij";
+	if (argc > 1)
+	{
+		test1 = (uint8_t*)argv[1];
+	}
+	length = ft_strlen_test((char*)test1);
+	if (argc > 2)
+	{
+		length = (size_t) ft_atoi_test(argv[2]);
+	}
+	test2 = (uint8_t*)malloc(sizeof(uint8_t) * (length + 1));
+	if (test2 == 0)
+	{
+		printf("Malloc() returned 0 (null pointer). Exit...");
+		return (0);
+	}
+	test2 = ft_memcpy(test2, test1, length);
+	printf("\nTest1 in memory: \n");
+	print_mem(test1, length+1);
+	printf("\n\nTest2 in memory: \n");
+	print_mem(test2, length+1);
+	printf("\n");
+	return (0);
+}

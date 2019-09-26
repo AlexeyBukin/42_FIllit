@@ -1,0 +1,52 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strncpy_test.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/07 20:45:43 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/12 21:45:44 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int		main(int argc, char **argv)
+{
+	size_t		t1_len;
+	size_t		t2_len;
+	char		*test1;
+	char		*test2;
+	char		*test3;
+
+	test1 = "abcdefghij";
+	t2_len = 4;
+	if (argc > 1)
+	{
+		test1 = argv[1];
+		if (argc > 2)
+		{
+			t2_len = (size_t) ft_atoi_test(argv[2]);
+		}
+	}
+	t1_len = ft_strlen_test((char*)test1);
+	test2 = malloc(sizeof(char) * (t2_len + 1));
+	test3 = malloc(sizeof(char) * (t2_len + 1));
+	if (test2 == 0 || test3 == 0)
+	{
+		printf("Malloc() returned 0 (null pointer). Exit...");
+		return (0);
+	}
+	test2 = ft_strncpy(test2, test1, t2_len);
+	printf("\nTest2 length is: %zu\n", t2_len);
+	printf("\nTest1 in memory: \n");
+	print_mem(test1, t1_len+1);
+	printf("\n\nTest2 in memory: \n");
+	print_mem(test2, t2_len+2);
+	printf("\n\nTest3 in memory: \n");
+	test3 = strncpy(test3, test1, t2_len);
+	print_mem(test3, t2_len+2);
+	printf("\n");
+	return (0);
+}

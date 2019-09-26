@@ -1,0 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strdel_test.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/13 17:44:04 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/13 17:44:29 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int		main(int argc, char **argv)
+{
+	size_t		length;
+	char		*test1;
+	char		*test2;
+
+	test1 = "abcdefghij";
+	if (argc > 1)
+	{
+		test1 = argv[1];
+	}
+	length = ft_strlen_test(test1);
+	test2 = ft_strdup(test1);
+	if (test2 == 0)
+	{
+		printf("ft_strdup() returned 0 (null pointer). Exit...");
+		return (0);
+	}
+	printf("\nTest2 in memory: \n");
+	print_mem(test2, length+1);
+	ft_strdel(&test2);
+	if (test2 == 0)
+	{
+		printf("\n\nTest2 is null pointer, ft_strdel() works!\n");
+		return (0);
+	}
+	printf("\n\nTest2 in memory after ft_strdel(): \n");
+	print_mem(test2, length+1);
+	printf("\n");
+	return (0);
+}

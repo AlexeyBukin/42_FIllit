@@ -1,0 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memchr_test.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/07 11:46:49 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/13 21:57:38 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int		main(int argc, char **argv)
+{
+	int			ch;
+	size_t		length;
+	uint8_t		*test;
+
+	test = (uint8_t*)"He said \'London is a capital of Great Britain\' 1234567890 times.";
+	ch = 'a';
+	length = ft_strlen_test((char*) test) + 1;
+	if (argc > 2)
+	{
+		ch = argv[1][0];
+		if (argc > 2)
+		{
+			test = (uint8_t*)argv[1];
+			ch = argv[2][0];
+			length = ft_strlen_test((char*) test) + 1;
+			if (argc > 3)
+			{
+				length = (uint8_t)ft_atoi_test(argv[3]);
+			}
+		}
+	}
+	printf("\nTemplate: 0x%02x (\'%c\')\n\n", ch, ch);
+	printf("print_mem(\"%s\", %zu): \n", test, length);
+	print_mem(test, length + 1);
+	test = ft_memchr(test, ch, length);
+	if (test == 0)
+	{
+		printf("\n\nft_memchr(): \n [0x00000000]: 0x00 ('')\n");
+		return (0);
+	}
+	printf("\n\nft_memchr(): \n");
+	print_mem(test, 1);
+	printf("\n");
+	return (0);
+}

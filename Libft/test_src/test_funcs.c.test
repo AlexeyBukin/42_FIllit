@@ -1,0 +1,110 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_funcs.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/07 18:03:01 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/13 16:59:40 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+void	print_mem(void *p, size_t length)
+{
+	size_t 	i;
+	uint8_t 	*byte_p;
+	int 	columns;
+
+	i = 0;
+	columns = 1; //4
+	byte_p = (uint8_t*)p;
+	while (i < length)
+	{
+		printf("[0x%08x]: 0x%02x (\'%c\')  \t", (int) &byte_p[i], byte_p[i], byte_p[i]);
+		if (i % columns == columns - 1)
+		{
+			printf("\n");
+		}
+		i++;
+	}
+}
+
+void	print_mem_cmp(void *p1, void *p2, size_t length)
+{
+	size_t 		i;
+	uint8_t 	*byte_p1;
+	uint8_t 	*byte_p2;
+	int 		columns;
+
+	i = 0;
+	columns = 1;
+	byte_p1 = (uint8_t*)p1;
+	byte_p2 = (uint8_t*)p2;
+	while (i < length)
+	{
+		printf("[0x%08x]: 0x%02x (\'%c\') \t<-->  ", (int) &byte_p1[i], byte_p1[i], byte_p1[i]);
+		printf("[0x%08x]: 0x%02x (\'%c\')\t|\t", (int) &byte_p2[i], byte_p2[i], byte_p2[i]);
+		if (i % columns == columns - 1)
+		{
+			printf("\n");
+		}
+		i++;
+	}
+}
+
+int 	ft_atoi_test(char *str)
+{
+	char	sign;
+	int		num;
+	int		i;
+
+	num = 0;
+	i = 0;
+	sign = 1;
+	while (str[i] == ' ')
+		i++;
+	if (str[i] == '-')
+	{
+		sign = -1;
+		i++;
+	}
+	else if (str[i] == '+')
+	{
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		num *= 10;
+		num += str[i] - '0';
+		i++;
+	}
+	return (num * sign);
+}
+
+int ft_strlen_test(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i] != 0)
+	{
+		i++;
+	}
+	return (i);
+}
+
+void	ft_print_list(t_list *list)
+{
+	if (list != 0)
+	{
+		while (list->next != 0)
+		{
+			printf("content[\'%s\'] -> ", list->content);
+			list = list->next;
+		}
+		printf("content[\'%s\'].", list->content);
+	}
+}

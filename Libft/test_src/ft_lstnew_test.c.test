@@ -1,0 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstnew_test.c.test                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/14 16:27:58 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/14 16:27:58 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int		main(int argc, char **argv)
+{
+	t_list		*list;
+	size_t		cont_size;
+	char		*cont;
+
+	cont = "This is content";
+	if (argc > 1)
+	{
+		cont = argv[1];
+	}
+	cont_size = ft_strlen(cont) + 1;
+	list = ft_lstnew(cont, cont_size);
+	if (list == 0)
+	{
+		printf("ft_lstnew() returned 0 (null pointer). Exit...");
+		return (0);
+	}
+	printf("\nContent is: %s", list->content);
+	printf("\nContent size is: %zu\n", list->content_size);
+	printf("\n");
+	return (0);
+}

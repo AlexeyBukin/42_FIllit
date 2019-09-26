@@ -1,0 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcmp_test.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/07 16:03:09 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/07 16:58:39 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int		main(int argc, char **argv)
+{
+	size_t		length;
+	uint8_t		*test1;
+	uint8_t		*test2;
+
+	test1 = (uint8_t*)"abcdefghij";
+	test2 = (uint8_t*)"abcdfffhij";
+	length = ft_strlen_test((char*)test1);
+	if (argc > 2)
+	{
+		test1 = (uint8_t*)argv[1];
+		test2 = (uint8_t*)argv[2];
+		length = ft_strlen_test((char*)test1);
+		if (argc > 3)
+		{
+			length = (size_t) ft_atoi_test(argv[2]);
+		}
+	}
+	else if (argc != 1)
+	{
+		printf("Wrong arguments. Try again.");
+		return (0);
+	}
+	printf("\nFirst str: %s\n", test1);
+	printf("Second str: %s\n", test2);
+	printf("Length: %zu\n", length);
+	printf("\n");
+	printf("Result of ft_memcmp() is %d\n", ft_memcmp(test1, test2, length));
+	printf("Result of memcmp() is %d\n", memcmp(test1, test2, length));
+	return (0);
+}

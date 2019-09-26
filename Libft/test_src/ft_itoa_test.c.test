@@ -1,0 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa_test.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/13 16:44:29 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/13 17:02:22 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int		main(int argc, char **argv)
+{
+	size_t		length;
+	int 		i;
+	char		*test1;
+	char		*test2;
+
+	test1 = "0";
+	if (argc > 1)
+	{
+		test1 = argv[1];
+	}
+	i = ft_atoi_test(test1);
+	length = ft_strlen_test((char*)test1);
+	test2 = ft_itoa(i);
+	if (test2 == 0)
+	{
+		printf("ft_itoa() returned 0 (null pointer). Exit...");
+		return (0);
+	}
+	printf("\nft_itoa(%d): \"%s\"\n", i, test2);
+	return (0);
+}

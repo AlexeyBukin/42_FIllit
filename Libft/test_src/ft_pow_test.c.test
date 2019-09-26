@@ -1,0 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_pow_test.c.test                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/16 18:59:42 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/16 18:59:42 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int		main(int argc, char **argv)
+{
+	int 		i;
+	char		*test1;
+	char		*test2;
+
+	test1 = "-284";
+	test2 = "3";
+	if (argc == 1)
+	{
+		printf("Result of ft_pow(%s, %s) is %d\n", test1, test2, ft_pow(ft_atoi(test1), ft_atoi(test2)));
+	}
+	else
+	{
+		i = 1;
+		while (i * 2 < argc)
+		{
+			test1 = argv[i];
+			test2 = argv[i + 1];
+			printf("Result of ft_pow(%s, %s) is %d\n", test1, test2, ft_pow(ft_atoi(test1), ft_atoi(test2)));
+			i++;
+		}
+	}
+	return (0);
+}

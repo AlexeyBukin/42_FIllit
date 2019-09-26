@@ -1,0 +1,49 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strclr_test.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/13 19:25:50 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/13 19:25:50 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+void	if_alpha_toupper_test(char *c)
+{
+	if (ft_isalpha(*c))
+	{
+		*c = ft_toupper(*c);
+	}
+}
+
+int		main(int argc, char **argv)
+{
+	size_t		length;
+	char		*test1;
+	char		*test2;
+
+	test1 = "abcdefghij";
+	if (argc > 1)
+	{
+		test1 = argv[1];
+	}
+	length = ft_strlen_test(test1);
+	test2 = malloc(sizeof(uint8_t) * (length + 1));
+	if (test2 == 0)
+	{
+		printf("Malloc() returned 0 (null pointer). Exit...");
+		return (0);
+	}
+	test2 = ft_strcpy(test2, test1);
+	printf("\nTest2 in memory: \n");
+	print_mem(test2, length+1);
+	ft_striter(test2, &if_alpha_toupper_test);
+	printf("\n\nTest2 in memory after ft_striter(): \n");
+	print_mem(test2, length+1);
+	printf("\n");
+	return (0);
+}

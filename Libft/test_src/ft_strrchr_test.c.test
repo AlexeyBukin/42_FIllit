@@ -1,0 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrchr_test.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/12 18:11:28 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/12 18:11:57 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int		main(int argc, char **argv)
+{
+	size_t		length;
+	char		*test1;
+	int			c;
+
+	c = 'f';
+	test1 = "abcdefghij_ford_fusion";
+	if (argc > 1)
+	{
+		test1 = argv[1];
+		if (argc > 2)
+		{
+			c = argv[2][0];
+		}
+	}
+	length = ft_strlen_test((char*)test1);
+	printf("\nTest1 in memory: \n");
+	print_mem(test1, length+1);
+	printf("\n\nft_strrchr(%s, %c): \n", test1, c);
+	print_mem(ft_strrchr(test1, c), 1);
+	printf("\n");
+	return (0);
+}

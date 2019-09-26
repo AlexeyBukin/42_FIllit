@@ -1,0 +1,49 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strnew_test.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/13 17:44:19 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/13 17:44:19 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+void	delete_cont(void *cont, size_t size)
+{
+	ft_bzero(cont, size);
+	free(cont);
+}
+
+int		main(int argc, char **argv)
+{
+	t_list		*list;
+	size_t		cont_size;
+	void		*content;
+	char		*cont_str;
+
+	cont_str = "This is content";
+	if (argc > 1)
+	{
+		cont_str = argv[1];
+	}
+	cont_size = ft_strlen(cont_str) + 1;
+	list = ft_lstnew(cont_str, cont_size);
+	if (list == 0)
+	{
+		printf("ft_lstnew() returned 0 (null pointer). Exit...");
+		return (0);
+	}
+	content = list->content;
+	printf("\nContent in memory before: \n");
+	print_mem(content, cont_size);
+	ft_lstdelone(&list, &delete_cont);
+	printf("\nlist is: %zu\n", (unsigned long) list);
+	printf("\nContent in memory after: \n");
+	print_mem(content, cont_size);
+	printf("\n");
+	return (0);
+}

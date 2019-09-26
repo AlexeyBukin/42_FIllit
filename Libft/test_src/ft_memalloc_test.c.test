@@ -1,0 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memalloc_test.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/12 21:24:25 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/12 21:25:12 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int		main(int argc, char **argv)
+{
+	uint8_t		*test;
+	size_t		len;
+
+	len = 5;
+	if (argc > 1)
+	{
+		len = ft_atoi_test(argv[1]);
+	}
+	test = (uint8_t*)ft_memalloc(sizeof(uint8_t) * (len));
+	if (test == 0)
+	{
+		printf("ft_memalloc() returned 0 (null pointer). Exit...");
+		return (0);
+	}
+	printf("\nft_memalloc(%zu) in memory: \n", len);
+	print_mem(test, len);
+	printf("\n");
+	return (0);
+}

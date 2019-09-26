@@ -1,0 +1,59 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstnew_test.c.test                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/14 16:27:58 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/14 16:27:58 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+
+
+int		main(int argc, char **argv)
+{
+	t_list		*list;
+	t_list		*elem1;
+	t_list		*elem2;
+	size_t		c1_size;
+	size_t		c2_size;
+	size_t		c3_size;
+	char		*cont1;
+	char		*cont2;
+	char		*cont3;
+
+	cont1 = "This is content #1";
+	cont2 = "This is content of elem";
+	cont3 = "This is another's elem content";
+	if (argc > 3)
+	{
+		cont1 = argv[1];
+		cont2 = argv[2];
+		cont3 = argv[3];
+	}
+	c1_size = ft_strlen(cont1) + 1;
+	c2_size = ft_strlen(cont2) + 1;
+	c3_size = ft_strlen(cont3) + 1;
+	list = ft_lstnew(cont1, c1_size);
+	elem1 = ft_lstnew(cont2, c2_size);
+	elem2 = ft_lstnew(cont3, c3_size);
+	if (list == 0 || elem1 == 0 || elem2 == 0)
+	{
+		printf("ft_lstnew() returned 0 (null pointer). Exit...");
+		return (0);
+	}
+	printf("Just list:\n");
+	ft_print_list(list);
+	printf("\nAdded one elem:\n");
+	ft_lstadd(&list, elem1);
+	ft_print_list(list);
+	printf("\nAdded one  more elem:\n");
+	ft_lstadd(&list, elem2);
+	ft_print_list(list);
+	printf("\n");
+	return (0);
+}

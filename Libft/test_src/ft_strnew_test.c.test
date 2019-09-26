@@ -1,0 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strnew_test.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/13 17:44:19 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/13 17:44:19 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int		main(int argc, char **argv)
+{
+	size_t		length;
+	char		*test1;
+
+	length = 5;
+	if (argc > 1)
+	{
+		length = ft_atoi_test(argv[1]);
+	}
+	test1 = ft_strnew(length);
+	if (test1 == 0)
+	{
+		printf("ft_strnew() returned 0 (null pointer). Exit...");
+		return (0);
+	}
+	printf("\nLength is: %zu\n", length);
+	printf("\nTest1 in memory: \n");
+	print_mem(test1, length+1);
+	printf("\n");
+	return (0);
+}

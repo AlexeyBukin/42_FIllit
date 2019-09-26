@@ -1,0 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim_test.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/13 20:43:39 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/13 20:43:39 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int		main(int argc, char **argv)
+{
+	size_t		t1_len;
+	char		*test0;
+	char		*test1;
+
+	test1 = "   abcdefghij  ";
+	if (argc > 1)
+	{
+		test1 = argv[1];
+	}
+	t1_len = ft_strlen_test((char*)test1);
+	test0 = ft_strtrim(test1);
+	if (test0 == 0)
+	{
+		printf("ft_strtrim() returned 0 (null pointer). Exit...");
+		return (0);
+	}
+	printf("\nTest1 in memory: \n");
+	print_mem(test1, t1_len+1);
+	printf("\n\nft_strtrim(\"%s\") in memory: \n", test1);
+	print_mem(test0, t1_len+1);
+	printf("\n");
+	return (0);
+}

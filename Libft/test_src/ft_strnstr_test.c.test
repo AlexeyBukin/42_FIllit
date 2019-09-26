@@ -1,0 +1,68 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strchr_test.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/12 17:51:13 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/12 20:52:30 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int		main(int argc, char **argv)
+{
+	size_t		len;
+	size_t		t1_len;
+	size_t		t2_len;
+	char		*test1;
+	char		*test2;
+	char 		*test3;
+	char		*test_real;
+
+	test1 = "abcdefffghij";
+	test2 = "fff";
+	len = ft_strlen_test(test1);
+	if (argc > 1)
+	{
+		test1 = argv[1];
+		if (argc > 2)
+		{
+			test2 = argv[2];
+			if (argc > 3)
+			{
+				len = ft_atoi_test(argv[3]);
+			}
+		}
+	}
+	t1_len = ft_strlen_test(test1);
+	t2_len = ft_strlen_test(test2);
+	printf("\nTest1 in memory: \n");
+	print_mem(test1, t1_len+1);
+	printf("\nTest2 in memory: \n");
+	print_mem(test2, t2_len+1);
+	printf("\n\nft_strNstr(\"%s\", \"%s\", %zu): \n", test1, test2, len);
+	test3 = ft_strnstr(test1, test2, len);
+	if(test3 == 0)
+	{
+		printf("\n[0x00000000]: 0x00 ('')\n");
+	}
+	else
+	{
+		print_mem(test3, 1);
+	}
+	test_real = strnstr(test1, test2, len);
+	printf("\n\nstrNstr(\"%s\", \"%s\", %zu): \n", test1, test2, len);
+	if(test_real == 0)
+	{
+		printf("\n[0x00000000]: 0x00 ('')\n");
+	}
+	else
+	{
+		print_mem(test_real, 1);
+	}
+	printf("\n");
+	return (0);
+}

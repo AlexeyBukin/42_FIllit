@@ -1,0 +1,50 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memset_test.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/06 22:28:10 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/07 18:25:13 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int		main(int argc, char **argv)
+{
+	int			ch;
+	size_t		length;
+	uint8_t		*test;
+
+	if (argc == 1)
+	{
+		length = 64;
+		ch = 'X';
+	}
+	else if (argc == 3)
+	{
+		ch = argv[1][0];
+		length = (size_t) ft_atoi_test(argv[2]);
+	}
+	else
+	{
+		printf("Wrong number of args. Try again\n");
+		return (0);
+	}
+	test = (uint8_t*)malloc(sizeof(uint8_t) * length);
+	if (test == 0)
+	{
+		printf("Malloc() returned 0 (null pointer). Exit...");
+		return (0);
+	}
+	printf("\nTemplate: 0x%02x (\'%c\')\n\n", ch, ch);
+	printf("Before ft_memset(): \n");
+	print_mem(test, length);
+	test = memset(test, ch, length);
+	printf("\n\nAfter ft_memset(): \n");
+	print_mem(test, length);
+	printf("\n");
+	return (0);
+}

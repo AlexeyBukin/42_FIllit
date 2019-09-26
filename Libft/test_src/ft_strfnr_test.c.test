@@ -1,0 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strfnr_test.c.test                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/15 16:53:26 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/15 16:53:26 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int		main(int argc, char **argv)
+{
+	int 		find;
+	int 		replace;
+	char		*test0;
+	char		*test1;
+
+	test1 = "I love potatoes.";
+	find = 'o';
+	replace = '0';
+	if (argc > 1)
+	{
+		test1 = argv[1];
+		if (argc > 3)
+		{
+			find = argv[2][0];
+			replace = argv[3][0];
+		}
+	}
+	test0 = malloc(sizeof(uint8_t) * (ft_strlen(test1) + 1));
+	test1 = ft_strcpy(test0, test1);
+	if (test1 == 0)
+	{
+		printf("Malloc() returned 0 (null pointer). Exit...");
+		return (0);
+	}
+	printf("\nTest1 before: \"%s\"\n", test1);
+	test1 = ft_strfnr(test1, find, replace);
+	printf("\nTest1 after: \"%s\"\n", test1);
+	printf("\n");
+	return (0);
+}

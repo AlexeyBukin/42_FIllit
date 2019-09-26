@@ -1,0 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strcmp_test.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/12 19:32:51 by kcharla           #+#    #+#             */
+/*   Updated: 2019/09/12 19:34:10 by kcharla          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test.h"
+
+int		main(int argc, char **argv)
+{
+	char		*test1;
+	char		*test2;
+
+	test1 = "abcdefghij";
+	test2 = "abcdfffhij";
+	if (argc > 2)
+	{
+		test1 = argv[1];
+		test2 = argv[2];
+	}
+	else if (argc != 1)
+	{
+		printf("Wrong arguments. Try again.");
+		return (0);
+	}
+	printf("\nFirst str: %s\n", test1);
+	printf("Second str: %s\n", test2);
+	printf("\n");
+	printf("Result of ft_strncmp() is %d\n", ft_strcmp(test1, test2));
+	printf("Result of strncmp() is %d\n", strcmp(test1, test2));
+	return (0);
+}
