@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 17:57:19 by kcharla           #+#    #+#             */
-/*   Updated: 2019/09/26 14:54:28 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/09/26 15:16:50 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void	print_field(t_field field, int	size)
     colors[4] = "[0;35m";
     colors[5] = "[0;36m";
 
-//    colors[6] = "[1;31m";
-//    colors[7] = "[0;31m";
-//    colors[8] = "[0;31m";
-//    colors[9] = "[0;31m";
+    colors[6] = "[1;31m";
+    colors[7] = "[1;32m";
+    colors[8] = "[01;33m";
+    colors[9] = "[1;35m";
 
 	i = 0;
 	while(i < size)

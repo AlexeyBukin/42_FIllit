@@ -46,19 +46,19 @@ int		ft_tmino_cmp(t_mino t1, t_mino t2)
 	return (1);
 }
 
-int		define_tetrimino(t_mino *tmino)
+int		define_tetrimino(t_mino tmino)
 {
 	int			i;
 
 	if (tmino == 0)
 		return (-1);
-	if (count_chars(*tmino, '#') != 4 || count_chars(*tmino, '.') != 12)
+	if (count_chars(tmino, '#') != 4 || count_chars(tmino, '.') != 12)
 		return (-1);
 	shift_up_left(tmino);
 	i = 0;
 	while(i < T_MINO_TYPES)
 	{
-		if (ft_tmino_cmp(*tmino, g_tminos[i]) == 1)
+		if (ft_tmino_cmp(tmino, g_tminos[i]) == 1)
 		{
 			return (i);
 		}

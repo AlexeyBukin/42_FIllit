@@ -25,7 +25,7 @@ typedef char t_field[256];
 #define TMINO_STR_LEN 16
 typedef char t_mino[16];
 
-int			define_tetrimino(t_mino *tmino);
+int			define_tetrimino(t_mino tmino);
 
 void		shift_left(t_mino tmino);
 void		shift_up(t_mino tmino);
