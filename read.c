@@ -23,11 +23,15 @@ int		read_newline(int fd)
     return (0);
 }
 
+//TODO clean read function, with loop and reading newlines
+
 int		read_tmino(int fd, t_mino tmino)
 {
+    int read_bytes = 0;
     char	buffer[20];
 
-    if (read(fd, buffer, 20) != 20)
+    read_bytes = read(fd, buffer, 20);
+    if (read_bytes != 20)
         return (0);
     tmino[0] = buffer[0];
     tmino[1] = buffer[1];

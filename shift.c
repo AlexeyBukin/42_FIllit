@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "includes/fillit_header.h"
-#include <stdio.h>
 
 void	shift_up(t_mino tmino)
 {
@@ -19,20 +18,20 @@ void	shift_up(t_mino tmino)
 	int		i;
 
 	i = 0;
-	while (i < 3)
+	while (i < TMINO_SIZE - 1)
 	{
 		j = 0;
-		while (j < 4)
+		while (j < TMINO_SIZE)
 		{
-			tmino[i * 4 + j] = tmino[(i + 1) * 4 + j];
+			tmino[i * TMINO_SIZE + j] = tmino[(i + 1) * TMINO_SIZE + j];
 			j++;
 		}
 		i++;
 	}
 	j = 0;
-	while (j < 4)
+	while (j < TMINO_SIZE)
 	{
-		tmino[12 + j] = '.';
+		tmino[TMINO_SIZE * (TMINO_SIZE - 1) + j] = '.';
 		j++;
 	}
 }
@@ -43,20 +42,20 @@ void	shift_left(t_mino tmino)
 	int		i;
 
 	i = 0;
-	while (i < 3)
+	while (i < TMINO_SIZE - 1)
 	{
 		j = 0;
-		while (j < 4)
+		while (j < TMINO_SIZE)
 		{
-			tmino[j * 4 + i] = tmino[j * 4 + (i + 1)];
+			tmino[j * TMINO_SIZE + i] = tmino[j * TMINO_SIZE + (i + 1)];
 			j++;
 		}
 		i++;
 	}
 	j = 0;
-	while (j < 4)
+	while (j < TMINO_SIZE)
 	{
-		tmino[j * 4 + 3] = '.';
+		tmino[j * TMINO_SIZE + (TMINO_SIZE - 1)] = '.';
 		j++;
 	}
 }
@@ -69,11 +68,11 @@ void	shift_up_left(t_mino tmino)
 
 	j = 0;
 	is_empty = 1;
-	while (j < 4)
+	while (j < TMINO_SIZE)
 	{
 		i = 0;
 		is_empty = 1;
-		while (i < 4)
+		while (i < TMINO_SIZE)
 		{
 			if (tmino[i] == '#')
 				is_empty = 0;
@@ -83,9 +82,9 @@ void	shift_up_left(t_mino tmino)
 			shift_up(tmino);
 		i = 0;
 		is_empty = 1;
-		while (i < 4)
+		while (i < TMINO_SIZE)
 		{
-			if (tmino[i * 4] == '#')
+			if (tmino[i * TMINO_SIZE] == '#')
 				is_empty = 0;
 			i++;
 		}
