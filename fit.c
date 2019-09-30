@@ -23,8 +23,8 @@ extern int g_field_str_len;
 
 int		is_perimiter_empty(t_field field, int size)
 {
-    int     sum;
-	int		i;
+    register int 	sum;
+    register int 	i;
 
 	sum = 0;
 	i = 0;
@@ -33,13 +33,16 @@ int		is_perimiter_empty(t_field field, int size)
         sum += field[g_field_size * i + size];
         i++;
     }
+	if (sum != '.' * (size + 1))
+        return (0);
+	sum = 0;
 	i = 0;
 	while (i < size)
 	{
         sum += field[g_field_size * size + i];
         i++;
     }
-	return (sum == ('.' * (size + size + 1)));
+	return (sum == ('.' * (size)));
 }
 
 /*
@@ -49,11 +52,13 @@ int		is_perimiter_empty(t_field field, int size)
 
 int     get_rang(t_field field, int perim)
 {
-    int     i;
-    int     index;
+    char            perim_sqr;
+    register int 	i;
+    register int 	index;
 
     i = 0;
-    while (i < perim * perim)
+    perim_sqr = perim * perim;
+    while (i < perim_sqr)
     {
         index = get_index_by_num(i, perim);
         if (field[index] == '.')
@@ -69,20 +74,13 @@ int     get_rang(t_field field, int perim)
 
 void		stack(t_field field, int index, t_mino mino)
 {
-	int		var;
-	int 	i;
+    register int 	i;
 
 	i = 0;
-    // (i < TMINO_STR_LEN)
 	while (i < TMINO_STR_LEN - 3)
 	{
-
-		//field[index + i % TMINO_SIZE + FIELD_SIZE * (i / TMINO_SIZE)] = mino[i];
 		if (mino[i] != '.')
-        {
-            var = index + i % TMINO_SIZE + g_field_size * (i / TMINO_SIZE);
-            field[var] = mino[i];
-        }
+            field[index + (i & 3) + g_field_size * (i >> 2)] = mino[i];
 		i++;
 	}
 }
@@ -93,17 +91,13 @@ void		stack(t_field field, int index, t_mino mino)
 
 void        delete_from_field(t_field field, int index, t_mino mino)
 {
-    int		index_to;
-    int 	i;
+    register int 	i;
 
     i = 0;
     while (i < TMINO_STR_LEN - 3)
     {
         if (mino[i] != '.')
-        {
-            index_to = index + i % TMINO_SIZE + g_field_size * (i / TMINO_SIZE);
-            field[index_to] = '.';
-        }
+            field[index + (i & 3) + g_field_size * (i >> 2)] = '.';
         i++;
     }
 }
@@ -115,18 +109,13 @@ void        delete_from_field(t_field field, int index, t_mino mino)
 
 int		try_stack(t_field field, int index, t_mino mino)
 {
-	int 	i;
+    register int 	i;
 
 	i = 0;
 	while (i < TMINO_STR_LEN - 3)
 	{
-		if (mino[i] != '.')
-		{
-			if (field[index + i % TMINO_SIZE + g_field_size * (i / TMINO_SIZE)] != '.')
-			{
-				return (0);
-			}
-		}
+		if (mino[i] != '.' && field[index + (i & 3) + g_field_size * (i >> 2)] != '.')
+		    return (0);
 		i++;
 	}
 	stack(field, index, mino);
@@ -135,14 +124,18 @@ int		try_stack(t_field field, int index, t_mino mino)
 
 void    tmino_swap(t_mino t1, t_mino t2)
 {
-    ft_memcpy(g_tmino_buf, t1, TMINO_STR_LEN);
-    ft_memcpy(t1, t2, TMINO_STR_LEN - 3);
-    ft_memcpy(t2, g_tmino_buf, TMINO_STR_LEN - 3);
-}
+    char            buf;
+    register int 	i;
 
-//int			g_best_perimeter = 16;
-//t_field		g_best_field;
-//int         g_best_rang = -1;
+    i = 0;
+    while (i < TMINO_STR_LEN - 3)
+    {
+        buf = t1[i];
+        t1[i] = t2[i];
+        t2[i] = buf;
+        i++;
+    }
+}
 
 extern int			g_step;
 
@@ -150,264 +143,147 @@ extern int			g_step;
 void		rec_puzzle(t_field field, t_mino *tminos, int mino_num)
 {
     int         local_rang;
-	//int 		a;
-	int 		j;
-	int 		i;
+	register int 		j;
+	register int 		i;
 	int 		perimiter_size;
-	// t_mino		active_mino;
-	// t_mino		next_array[mino_num * 2];
-	// t_field		local_field;
-
-    //print_field(local_field, 8);
 
 
 
 	perimiter_size = find_perimiter_size(field);
-	//if (perimiter_size <= 1)
-	//	perimiter_size = 0;
-
-	/// get-back
-	//print_step("");
-	//printf("p_size: %d, mino_num: %d\n", perimiter_size, mino_num);
 
 	if (perimiter_size > g_best_perimeter)
 		return ;
 
-	///
-	//g_step ++;
-	//ft_memcpy(local_field, field, FIELD_STR_LEN);
-
 	if (mino_num == 0)
 	{
-        /// get-back
-        // print_step("endpoint\n");
 		if (perimiter_size < g_best_perimeter)
 		{
 			g_best_perimeter = perimiter_size;
 			ft_memcpy(g_best_field, field, g_field_str_len);
 			g_best_rang = get_rang(g_best_field, perimiter_size);
-
-			// print_step("congrats!!! - better size\n");
-			///
-			//print_field(g_best_field, 8);
-
+			return ;
 		}
-		else // if (perimiter_size == g_best_perimeter)
+        local_rang = get_rang(field, perimiter_size);
+        if (local_rang > g_best_rang)
         {
-		    local_rang = get_rang(field, perimiter_size);
-		    if (local_rang > g_best_rang)
-            {
-                ft_memcpy(g_best_field, field, g_field_str_len);
-                g_best_rang = local_rang;
-                ///
-                // print_step("congrats !!! - better rang\n");
-            }
+            ft_memcpy(g_best_field, field, g_field_str_len);
+            g_best_rang = local_rang;
         }
-		///
-        /// get-back
-        // print_field(g_best_field, 8);
-
 		return ;
 	}
 
-	 // print_step("call\n");
+    //print_field(field, g_field_size);
+    //print_tmino_array(tminos, mino_num);
 
-	// ft_memcpy(local_field, field, g_field_str_len);
 	i = 0;
-
-    /// get-back
-   // if (mino_num >= 1)
-        //print_field(field, g_field_size);
-
-//    i = 0;
-//    while (i < mino_num * 2)
-//    {
-//        ft_memcpy(next_array[i], tminos[i % mino_num], TMINO_STR_LEN);
-//        //next_array[i] = array[i % mino_num];
-//        i++;
-//    }
-
-    // ft_memcpy(next_array[mino_num - 1], tminos[i], TMINO_STR_LEN);
-   // if (mino_num >= 1){
-//        print_step("");
-//        printf("got mnum: %d\n", mino_num);
-//        print_tmino_array(tminos, mino_num);
-//        print_step("\n");
-   // }
-
-    i = 0;
 	while (i < mino_num)
-	{
+    {
         tmino_swap(tminos[i], tminos[0]);
 
-//        j = 0;
-//        printf("i = %d, before swap:\n", i);
-//        while(j < mino_num)
+
+
+        int once_stacked = 0;
+
+        j = 0;
+
+        //int limit = (perimiter_size + 1) * (perimiter_size + 2) / 2;
+        int limit = (perimiter_size) * (perimiter_size + 1) / 2;
+        int index;
+
+        //limit = perimiter_size * perimiter_size - 1;
+
+        while (j < limit)
+        {
+            //index = get_index_by_num(j, (perimiter_size + 1));
+            index = get_index_by_num(j, perimiter_size);
+            if (try_stack(field, index, tminos[0]) )
+            {
+                once_stacked = 1;
+                //g_step++;
+
+
+
+                rec_puzzle(field, tminos + 1, mino_num - 1);
+                delete_from_field(field, index, tminos[0]);
+
+
+                //g_step--;
+            }
+            j++;
+        }
+
+//        index = get_index_by_num(j, (perimiter_size + 1));
+//        if (try_stack(field, index, tminos[0]) )
 //        {
-//            print_tmino(next_array[j]);
-//            //printf("\n");
-//            j++;
+//            once_stacked = 1;
+//            //g_step++;
+//            rec_puzzle(field, tminos + 1, mino_num - 1);
+//            delete_from_field(field, index, tminos[0]);
+//            //g_step--;
 //        }
-//        printf("after swap\n");
-//        tmino_swap(next_array[i], next_array[mino_num - 1]);
-//        j = 0;
-//        while(j < mino_num)
+//
+//        index = get_index_by_num(j, (perimiter_size + 1));
+//        if (try_stack(field, index, tminos[0]) )
 //        {
-//            print_tmino(next_array[j]);
-//            //printf("\n");
-//            j++;
+//            once_stacked = 1;
+//            //g_step++;
+//            rec_puzzle(field, tminos + 1, mino_num - 1);
+//            delete_from_field(field, index, tminos[0]);
+//            //g_step--;
 //        }
-//        printf("\n\n");
-		///
-		//print_step("");
-		//printf("%d) while iter, smaller then %d\n", i, mino_num);
-
-		// ft_memcpy(active_mino, tminos[i], TMINO_STR_LEN);
 
 
 
-//		j = 0;
-//		a = 0;
-//		if (mino_num > 1)
-//		{
-//			//print_step("next array: ");
-//			//printf("| i: %d \n", i);
-//			while (j < mino_num - 1)
-//			{
-//				if (a == i)
-//					a++;
-//				//print_step("");
-//				//printf("copy from %d to %d\n", j, a);
-//				ft_memcpy(next_array[j], tminos[a], TMINO_STR_LEN);
-//				//next_array[j] = tminos[a];
-//
-//				/// get-back
-//				// print_tmino(next_array[j]);
-//
-//				a++;
-//				j++;
-//			}
-//		}
 
+        j = (perimiter_size) * (perimiter_size + 1) / 2;
+        //j++;
+        limit = (perimiter_size + 1) * (perimiter_size + 2) / 2;
+        //limit--;
+        while (j < limit)
+        {
+            index = get_index_by_num(j, (perimiter_size + 1));
+            if (try_stack(field, index, tminos[0]) )
+            {
+                //g_step++;
+                rec_puzzle(field, &(tminos[1]), mino_num - 1);
+                delete_from_field(field, index, tminos[0]);
+                //g_step--;
+            }
+            j++;
+        }
 
-		//print_step("no crash 1: \n");
-
-		{ //perimiter iteration "try stack"
-			//print_step("cycling over, ");
-			//printf("per_size: %d\n", perimiter_size);
-
-			///
-			/// ft_memcpy(local_field, field, g_field_str_len);
-
-			//print_field(local_field, 16);
-
-			j = 0;
-
-//			int count_to = (perimiter_size + 1) * (perimiter_size + 1);
-//
-//			while (j < count_to)
-//            {
-//			    int index = j / (perimiter_size + 1) * g_field_size + j % (perimiter_size + 1);
-//			    //printf("j: %d, index: %d, perim_size: %d, g_size: %d\n", j, index, perimiter_size, g_field_size);
-//			    /// && find_perimiter_size(field) <= g_best_perimeter
-//                if (try_stack(field, index, tminos[i]))
-//                {
-//                    //print_step("no crash 3: \n");
-//                    //print_step("giving this: \n");
-//                    //print_field(local_field, 8);
-//                    g_step++;
-//                    // rec_puzzle(local_field, next_array, mino_num - 1);
-//                   // if (find_perimiter_size(field) <= g_best_perimeter)
-//                    //{
-//                        rec_puzzle(field, &(next_array[i + 1]), mino_num - 1);
-//                   // }
-//                    delete_from_field(field, index, tminos[i]);
-//                    g_step--;
-//                }
-//                j++;
-//            }
-
-			//while (j <= perimiter_size)
-			int limit = (perimiter_size + 1) * (perimiter_size + 2) / 2;
-			while (j < limit)
-			{
-				//print_step("no crash 2: \n");
-				///
-				//local_field[FIELD_SIZE * j + perimiter_size] = '*';
-				//print_step("sending: \n");
-				//print_field(local_field, 16);
-				//local_field[FIELD_SIZE * j + perimiter_size] = '.';
-				///
-
-				int index = get_index_by_num(j, (perimiter_size + 1));
-
-				//print_step("");
-				//printf("j: %d, x: %d, y: %d, index: %d\n", j, index % 16, index / 16, index);
-				//if (try_stack(&local_field, FIELD_SIZE * j + perimiter_size, active_mino))
-				/// if
-				//if (try_stack(local_field, index, active_mino))
-				if (try_stack(field, index, tminos[0]) )
-				{
-					//print_step("no crash 3: \n");
-					//print_step("giving this: \n");
-					//print_field(local_field, 8);
-					g_step++;
-					// rec_puzzle(local_field, next_array, mino_num - 1);
-                   // if (find_perimiter_size(field) <= g_best_perimeter)
-                   // {
-                    rec_puzzle(field, &(tminos[1]), mino_num - 1);
-                   /// rec_puzzle(field, &(next_array[i + 1]), mino_num - 1);
-                   // }
-                    delete_from_field(field, index, tminos[0]);
-					g_step--;
-				}
-				//print_step("no crash 2: \n");
-				/// ft_memcpy(local_field, field, g_field_str_len);
-
-//				if (try_stack(local_field, FIELD_SIZE * perimiter_size + j, active_mino))
-//				{
-//					rec_puzzle(local_field, next_array, mino_num - 1);
-//				}
-//				ft_memcpy(local_field, field, FIELD_SIZE);
-
-				j++;
-			}
-
-			
-
-			//while ()
-		}
-		i++;
-	}
-
-    i = 0;
-    while (i < mino_num - 1)
-    {
-        tmino_swap(tminos[i], tminos[i + 1]);
         i++;
     }
+
+    rotate_array(tminos, mino_num);
 }
+
+void    rotate_array(t_mino *array, int num)
+{
+    t_mino buf;
+    register int i;
+
+    ft_memcpy(buf, array[0], TMINO_STR_LEN - 3);
+    i = 0;
+    while (i < num - 1)
+    {
+        ft_memcpy(array[i], array[i + 1], TMINO_STR_LEN - 3);
+        i++;
+    }
+    ft_memcpy(array[i], buf, TMINO_STR_LEN - 3);
+}
+
+int		        size_bounds[17] = {0, 0, 2, 5, 9, 14, 20, 27, 35, 44, 54, 65, 77, 90, 104, 119, 135};
 
 int		get_index_by_num(int num, int size)
 {
-	//int 	res;
-	//int		sum;
-	int 	i;
-	int		size_bounds[17] = {0, 0, 2, 5, 9, 14, 20, 27, 35, 44, 54, 65, 77, 90, 104, 119, 135};
-	//int 	size_bound;
-	//int 	step;
-	//int		level;
-	int 	x;
-	int 	y;
-	//int 	fake_i;
-	int 	abc;
-	//int		iter_count;
+    register int    i;
+    register int 	x;
+    register int 	y;
+    register int 	abc;
 
-	//iter_count = 0;
 	if (num == 0)
 		return (0);
-	//size_bound = size_bounds[size];
-	//printf("num before: %d\n", num);
 
 	i = 0;
 	while (num > size_bounds[i + 1])
@@ -416,10 +292,6 @@ int		get_index_by_num(int num, int size)
 	x = num - size_bounds[i] - 1;
 	y = i - (num - size_bounds[i] - 1);
 
-	//printf("old x: %d\n\n", x);
-
-	//fake_i = 0;
-
 	if (num > size_bounds[size])
 	{
 		abc = size - 1;
@@ -427,31 +299,14 @@ int		get_index_by_num(int num, int size)
 		{
 			num = num - abc;
 			abc--;
-
-			//printf("num: %d, abc: %d\n", num, abc);
 		}
-
-		//iter_count = size - 1 - abc;
-		//printf("new iter_c: %d\n", iter_count);
-
-		//fake i
 		i = 0;
 		while (num > size_bounds[i + 1])
 			i++;
 
 		x = num - size_bounds[i] - 1;
 		y = i + (size - 1 - abc) - (num - size_bounds[i] - 1);
-
-		//printf("\n\n");
 	}
-
-	//x = num - size_bounds[fake_i] - 1;
-
-	//res = y * FIELD_SIZE + x;
-	//res = (i - (num - size_bounds[i] - 1)) * FIELD_SIZE + (num - size_bounds[i] - 1);
-	//printf("size_bound: %d, i = %d, x: %d, y: %d, fake_i: %d, res: %d, num: %d\n", size_bound, i, x, y, fake_i, res, num);
-
-	//printf("size_bound: %d, i = %d, x: %d, y: %d, num: %d\n", size_bounds[size], i, x, y, num);
 
 	return (y * g_field_size + x);
 }
@@ -459,7 +314,7 @@ int		get_index_by_num(int num, int size)
 
 int		find_perimiter_size(t_field field)
 {
-    int     size;
+    register int     size;
 
     size = g_field_size - 1;
     while (is_perimiter_empty(field, size))
@@ -471,16 +326,13 @@ int		find_perimiter_size(t_field field)
 
 void		mino_to_letter(t_mino mino, int num)
 {
-	int 	i;
+	register int 	i;
 
 	i = 0;
-    // (i < TMINO_STR_LEN)
 	while (i < TMINO_STR_LEN - 3)
 	{
 		if (mino[i] != '.')
-		{
 			mino[i] = 'A' + num;
-		}
 		i++;
 	}
 }

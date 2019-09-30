@@ -55,6 +55,25 @@ void	print_tmino(t_mino tmino)
 	}
 }
 
+//void	print_field(t_field field, int	size)
+//{
+//    int 	j;
+//    int 	i;
+//
+//    i = 0;
+//    while(i < size)
+//    {
+//        j = 0;
+//        while (j < size)
+//        {
+//            printf("%c", field[g_field_size * i + j]);
+//            j++;
+//        }
+//        printf("\n");
+//        i++;
+//    }
+//}
+
 void	print_field(t_field field, int	size)
 {
 	int 	j;
@@ -88,12 +107,12 @@ void	print_field(t_field field, int	size)
             {
 
 		        printf("%s%s", "\033", colors[field[g_field_size * i + j] - 'A']);
-                printf("%c", field[g_field_size * i + j]);
+                printf("%c ", field[g_field_size * i + j]);
                 printf("\033[0m");
             }
 		    else
             {
-                printf("%c", field[g_field_size * i + j]);
+                printf("%c ", field[g_field_size * i + j]);
             }
 
 			j++;

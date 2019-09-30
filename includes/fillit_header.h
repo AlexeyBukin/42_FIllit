@@ -73,6 +73,9 @@ void        tmino_swap(t_mino t1, t_mino t2);
 void		rec_puzzle(t_field field, t_mino *tminos, int mino_num);
 int			get_index_by_num(int num, int size);
 void		mino_to_letter(t_mino mino, int num);
+
+//new one
+void    rotate_array(t_mino *array, int num);
 ///         fit.c ends
 
 

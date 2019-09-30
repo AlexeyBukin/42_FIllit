@@ -30,7 +30,7 @@ int		main(int argc, char **argv)
 	while (i < 27 && ( rt = read_tmino(fd, array[i]) ) != 0 && ( rnl = read_newline(fd) ) != 0)
 	    i++;
 
-    printf("rnl: %d, rt: %d, i: %d\n", rnl, rt, i);
+    //printf("rnl: %d, rt: %d, i: %d\n", rnl, rt, i);
 
     num = i + 1;
 
@@ -50,7 +50,7 @@ int		main(int argc, char **argv)
 
 	start(array, num);
 
-	printf("\nbest size = %d\n", g_best_perimeter);
+	//printf("\nbest size = %d\n", g_best_perimeter);
 	print_field(g_best_field, g_best_perimeter);
 	return (0);
 }

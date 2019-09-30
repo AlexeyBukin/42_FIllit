@@ -14,8 +14,8 @@
 
 void	shift_up(t_mino tmino)
 {
-	int		j;
-	int		i;
+	register int		j;
+    register int		i;
 
 	i = 0;
 	while (i < TMINO_SIZE - 1)
@@ -38,8 +38,8 @@ void	shift_up(t_mino tmino)
 
 void	shift_left(t_mino tmino)
 {
-	int		j;
-	int		i;
+    register int		j;
+    register int		i;
 
 	i = 0;
 	while (i < TMINO_SIZE - 1)
@@ -62,33 +62,30 @@ void	shift_left(t_mino tmino)
 
 void	shift_up_left(t_mino tmino)
 {
-	int 	is_empty;
-	int		j;
-	int		i;
+    register int        sum;
+    register int		j;
+    register int		i;
 
 	j = 0;
-	is_empty = 1;
 	while (j < TMINO_SIZE)
 	{
 		i = 0;
-		is_empty = 1;
+		sum = 0;
 		while (i < TMINO_SIZE)
 		{
-			if (tmino[i] == '#')
-				is_empty = 0;
+		    sum += tmino[i];
 			i++;
 		}
-		if (is_empty == 1)
+		if (sum == '.' * 4)
 			shift_up(tmino);
 		i = 0;
-		is_empty = 1;
+        sum = 0;
 		while (i < TMINO_SIZE)
 		{
-			if (tmino[i * TMINO_SIZE] == '#')
-				is_empty = 0;
+            sum += tmino[i * TMINO_SIZE];
 			i++;
 		}
-		if (is_empty == 1)
+        if (sum == '.' * 4)
 			shift_left(tmino);
 		j++;
 	}

@@ -11,31 +11,13 @@
   <component name="ChangeListManager">
     <list default="true" id="5569c9c2-c817-4dfe-addd-683b4c32b4c7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Libft/ft_atoi.c" beforeDir="false" afterPath="$PROJECT_DIR$/Libft/ft_atoi.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Libft/ft_itoa.c" beforeDir="false" afterPath="$PROJECT_DIR$/Libft/ft_itoa.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Libft/ft_lstmap.c" beforeDir="false" afterPath="$PROJECT_DIR$/Libft/ft_lstmap.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Libft/ft_memchr.c" beforeDir="false" afterPath="$PROJECT_DIR$/Libft/ft_memchr.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Libft/ft_strsplit.c" beforeDir="false" afterPath="$PROJECT_DIR$/Libft/ft_strsplit.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Libft/libft.h" beforeDir="false" afterPath="$PROJECT_DIR$/Libft/libft.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/define_tetrimino.c" beforeDir="false" afterPath="$PROJECT_DIR$/define_tetrimino.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fillit" beforeDir="false" afterPath="$PROJECT_DIR$/fillit" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fit.c" beforeDir="false" afterPath="$PROJECT_DIR$/fit.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/fillit_header.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/fillit_header.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objects/define_tetrimino.o" beforeDir="false" afterPath="$PROJECT_DIR$/objects/define_tetrimino.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objects/fit.o" beforeDir="false" afterPath="$PROJECT_DIR$/objects/fit.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objects/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/objects/main.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objects/print.o" beforeDir="false" afterPath="$PROJECT_DIR$/objects/print.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objects/read.o" beforeDir="false" afterPath="$PROJECT_DIR$/objects/read.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objects/shift.o" beforeDir="false" afterPath="$PROJECT_DIR$/objects/shift.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objects/start.o" beforeDir="false" afterPath="$PROJECT_DIR$/objects/start.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ok_tetriminos" beforeDir="false" afterPath="$PROJECT_DIR$/ok_tetriminos" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/print.c" beforeDir="false" afterPath="$PROJECT_DIR$/print.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/read.c" beforeDir="false" afterPath="$PROJECT_DIR$/read.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shift.c" beforeDir="false" afterPath="$PROJECT_DIR$/shift.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start.c" beforeDir="false" afterPath="$PROJECT_DIR$/start.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_minos_2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test_minos_2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_minos_3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test_minos_3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_minos_4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test_minos_4.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

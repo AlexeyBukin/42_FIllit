@@ -12,40 +12,18 @@
 
 #include "includes/fillit_header.h"
 
-//int            g_field_size = 12;
-//int            g_field_str_len = 144;
-
-//extern int          g_best_rang;
-//extern int          g_best_perimeter;
-//extern t_field		g_best_field;
-
-//extern int g_field_size;
-//extern int g_field_str_len;
-
 void    start(t_mino *array, int mino_num)
 {
-   // int         types[mino_num];
-  //  int         if_any_not_empty = 0;
-    t_field		field;
-    int         i;
+    t_field		        field;
+    register int        i;
 
-    define_g_tminos();
     i = 0;
     while (i < mino_num)
     {
         shift_up_left(array[i]);
-        //types[i] = define_tetrimino(array[i]);
-//        if (types[i] < 13)
-//        {
-//            if_any_not_empty = 1;
-//        }
         mino_to_letter(array[i], i);
         i++;
     }
-
-
-
-    //calculate optomal boundary
     calculate_and_set_boundary(mino_num);
 
     init_field(field);
@@ -55,12 +33,13 @@ void    start(t_mino *array, int mino_num)
     while (i < mino_num)
     {
         tmino_swap(array[i], array[0]);
-//        if (if_any_not_empty == 1 && types[i] > 12)
-//        {
-//            i++;
-//            continue ;
-//        }
         stack(field, 0, array[0]);
+
+
+        print_field(field, g_field_size);
+        print_tmino_array(array, mino_num);
+
+
         rec_puzzle(field, &(array[1]), mino_num - 1);
         delete_from_field(field, 0, array[0]);
         i++;
@@ -69,7 +48,7 @@ void    start(t_mino *array, int mino_num)
 
 void        calculate_and_set_boundary(int mino_num)
 {
-    int     val;
+    register int     val;
 
     val = 1;
     while (val * val < mino_num * 4)
@@ -83,7 +62,7 @@ void        calculate_and_set_boundary(int mino_num)
 
 void	    init_field(t_field field)
 {
-    int 	i;
+    register int 	i;
 
     i = 0;
     while (i < g_field_str_len)
