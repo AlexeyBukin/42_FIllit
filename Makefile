@@ -10,6 +10,8 @@ LIB_HEAD = $(LIB_DIR)libft.h
 LIB_MAKE = $(LIB_DIR)Makefile
 LIB_FILE = lib/libft.a
 
+LIB_EXE_DIR = lib/
+
 #copypaste from bash "ls *.c" below
 C_FILES_LIST = define_tetrimino.c main.c shift.c print.c fit.c read.c start.c
 
@@ -25,12 +27,15 @@ O_FILES	= $(addprefix $(O_DIR), $(O_FILES_LIST))
 all: $(NAME)
 
 
-$(NAME): $(O_DIR) $(O_FILES) $(LIB_FILE)
+$(NAME): $(O_DIR) $(LIB_EXE_DIR) $(O_FILES) $(LIB_FILE)
 	clang -o $(NAME) $(O_FILES) -I Libft/includes -I includes/ -L lib/ -lft
 
 $(LIB_FILE): $(O_DIR)
 	make -C $(LIB_DIR)
 	cp $(LIB_DIR)libft.a $(LIB_FILE)
+
+$(LIB_EXE_DIR):
+*enter_tab_here*@mkdir -p $(LIB_EXE_DIR)
 
 $(O_DIR):
 	@mkdir -p $(O_DIR)
