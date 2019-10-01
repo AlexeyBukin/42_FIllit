@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 18:10:26 by kcharla           #+#    #+#             */
-/*   Updated: 2019/09/26 18:10:26 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/09/30 16:48:01 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,13 @@ int		read_newline(int fd)
     char	n;
 
     res = read(fd, &n, 1);
-    if (res == 1 && n == '\n')
-        return (1);
-    return (0);
+    if (res == 1)
+    {
+        if (n == '\n')
+            return (1);
+        return (0);
+    }
+    return (-1);
 }
 
 //TODO clean read function, with loop and reading newlines
@@ -31,6 +35,8 @@ int		read_tmino(int fd, t_mino tmino)
     char	buffer[20];
 
     read_bytes = read(fd, buffer, 20);
+    if (read_bytes == 0)
+        return (-1);
     if (read_bytes != 20)
         return (0);
     tmino[0] = buffer[0];

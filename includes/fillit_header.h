@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 13:05:49 by kcharla           #+#    #+#             */
-/*   Updated: 2019/09/28 13:40:08 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/10/01 14:45:25 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ typedef char t_mino[16];
 
 t_mino		g_tminos[T_MINO_TYPES];
 
-t_mino      g_tmino_buf;
-int			g_best_perimeter;
-t_field		g_best_field;
-int         g_best_rang;
-
+//t_mino      g_tmino_buf;
+//int			g_best_perimeter;
+//t_field		g_best_field;
+//int         g_best_rang;
+//
 int         g_field_size;
 int         g_field_str_len;
 
@@ -70,12 +70,14 @@ int		    find_perimiter_size(t_field field);
 int		    is_perimiter_empty(t_field field, int size);
 void        delete_from_field(t_field field, int index, t_mino mino);
 void        tmino_swap(t_mino t1, t_mino t2);
-void		rec_puzzle(t_field field, t_mino *tminos, int mino_num);
+// aloha
+int		rec_puzzle(t_field field, t_mino *tminos, int mino_num, int size);
+
 int			get_index_by_num(int num, int size);
 void		mino_to_letter(t_mino mino, int num);
 
 //new one
-void    rotate_array(t_mino *array, int num);
+void        rotate_array(t_mino *array, int num);
 ///         fit.c ends
 
 

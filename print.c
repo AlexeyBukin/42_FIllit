@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 17:57:19 by kcharla           #+#    #+#             */
-/*   Updated: 2019/09/28 13:41:28 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/10/01 21:23:35 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,72 +55,82 @@ void	print_tmino(t_mino tmino)
 	}
 }
 
-//void	print_field(t_field field, int	size)
-//{
-//    int 	j;
-//    int 	i;
-//
-//    i = 0;
-//    while(i < size)
-//    {
-//        j = 0;
-//        while (j < size)
-//        {
-//            printf("%c", field[g_field_size * i + j]);
-//            j++;
-//        }
-//        printf("\n");
-//        i++;
-//    }
-//}
-
 void	print_field(t_field field, int	size)
 {
-	int 	j;
-	int 	i;
+    int 	j;
+    int 	i;
 
-	char *colors[10];
-
-	colors[0] = "[0;31m";
-    colors[1] = "[0;32m";
-    colors[2] = "[0;33m";
-    colors[3] = "[0;34m";
-    colors[4] = "[0;35m";
-    colors[5] = "[0;36m";
-
-    colors[6] = "[1;31m";
-    colors[7] = "[1;32m";
-    colors[8] = "[01;33m";
-    colors[9] = "[1;35m";
-
-	i = 0;
-	while(i < size)
-	{
-		j = 0;
-
-		///
-		print_step("");
-
-		while (j < size)
-		{
-		    if (field[g_field_size * i + j] <= 'Z' && field[g_field_size * i + j] >= 'A')
-            {
-
-		        printf("%s%s", "\033", colors[field[g_field_size * i + j] - 'A']);
-                printf("%c ", field[g_field_size * i + j]);
-                printf("\033[0m");
-            }
-		    else
-            {
-                printf("%c ", field[g_field_size * i + j]);
-            }
-
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
+    i = 0;
+    while(i < size)
+    {
+        j = 0;
+        while (j < size)
+        {
+            printf("%c", field[g_field_size * i + j]);
+            j++;
+        }
+        printf("\n");
+        i++;
+    }
+    exit(0);
 }
+
+
+
+//void	print_field(t_field field, int	size)
+//{
+//
+//    static  int print_time = 0;
+//
+//    int 	j;
+//	int 	i;
+//
+//	print_time++;
+//	if (print_time > 50)
+//	    return;
+//
+//	char *colors[10];
+//
+//	colors[0] = "[0;31m";
+//    colors[1] = "[0;32m";
+//    colors[2] = "[0;33m";
+//    colors[3] = "[0;34m";
+//    colors[4] = "[0;35m";
+//    colors[5] = "[0;36m";
+//
+//    colors[6] = "[1;31m";
+//    colors[7] = "[1;32m";
+//    colors[8] = "[01;33m";
+//    colors[9] = "[1;35m";
+//
+//	i = 0;
+//	while(i < size + 2)
+//	{
+//		j = 0;
+//
+//		///
+//		print_step("");
+//
+//		while (j < size + 2)
+//		{
+//		    if (field[g_field_size * i + j] <= 'Z' && field[g_field_size * i + j] >= 'A')
+//            {
+//
+//		        printf("%s%s", "\033", colors[field[g_field_size * i + j] - 'A']);
+//                printf("%c ", field[g_field_size * i + j]);
+//                printf("\033[0m");
+//            }
+//		    else
+//            {
+//                printf("%c ", field[g_field_size * i + j]);
+//            }
+//
+//			j++;
+//		}
+//		printf("\n");
+//		i++;
+//	}
+//}
 
 void	print_usage()
 {

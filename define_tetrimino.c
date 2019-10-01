@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 12:42:42 by kcharla           #+#    #+#             */
-/*   Updated: 2019/09/28 13:43:27 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/09/30 22:03:43 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,36 +32,30 @@ int		count_chars(t_mino tmino, char c)
 
 int		ft_tmino_cmp(t_mino t1, t_mino t2)
 {
-    register int        sum1;
-    register int        sum2;
 	register int		i;
 
-	//print_tmino(t1);
 	i = 0;
-	sum1 = 0;
-	sum2 = 0;
-	while (i < TMINO_SIZE)
+	while ( (i < TMINO_STR_LEN - 3) && (t1[i] == t2[i]) )
     {
-	    sum1 += t1[i];
-        sum2 += t2[i];
 	    i++;
     }
-	return (sum1 == sum2);
+	return (t1[i] == t2[i]);
 }
 
 int		define_tetrimino(t_mino tmino)
 {
     register int			i;
 
-	if (count_chars(tmino, '.') != 12)
-		return (-1);
-	shift_up_left(tmino);
+	//if (count_chars(tmino, '.') != 12)
+	//	return (-1);
+	// shift_up_left(tmino);
     // print_tmino(tmino);
 	i = 0;
 	while(i < T_MINO_TYPES)
 	{
 		if (ft_tmino_cmp(tmino, g_tminos[i]) == 1)
 		{
+            //printf("\n\n");print_tmino(tmino);print_tmino(g_tminos[i]);printf("\n\n");
 			return (i);
 		}
 		i++;

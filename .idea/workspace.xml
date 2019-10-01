@@ -11,11 +11,12 @@
   <component name="ChangeListManager">
     <list default="true" id="5569c9c2-c817-4dfe-addd-683b4c32b4c7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/define_tetrimino.c" beforeDir="false" afterPath="$PROJECT_DIR$/define_tetrimino.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fit.c" beforeDir="false" afterPath="$PROJECT_DIR$/fit.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/fillit_header.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/fillit_header.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/print.c" beforeDir="false" afterPath="$PROJECT_DIR$/print.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shift.c" beforeDir="false" afterPath="$PROJECT_DIR$/shift.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/read.c" beforeDir="false" afterPath="$PROJECT_DIR$/read.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start.c" beforeDir="false" afterPath="$PROJECT_DIR$/start.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_minos_4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test_minos_4.txt" afterDir="false" />
     </list>
@@ -45,14 +46,14 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/norme" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/includes" />
       <recent name="$PROJECT_DIR$/lib" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/norme" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -95,6 +96,11 @@
       <workItem from="1569658268783" duration="5782000" />
       <workItem from="1569681942614" duration="105000" />
       <workItem from="1569749641577" duration="20984000" />
+      <workItem from="1569842927567" duration="2749000" />
+      <workItem from="1569848641910" duration="1595000" />
+      <workItem from="1569857295226" duration="645000" />
+      <workItem from="1569869560044" duration="1877000" />
+      <workItem from="1569926097777" duration="21732000" />
     </task>
     <servers />
   </component>
